@@ -32,3 +32,6 @@ cmsRun fragmentName_cfg.py
 ```
 
 Example crab submit files are in the crab_files directory. Note that you need to copy the gridpacks to a location readable from crab for this to work.
+
+# Heavy Gridpack
+For heavy size gridpack crab jobs will can't be submitted as regular procedure. The gridpack have to be uploaded to T2 or eos feom where xrootd service can be attend. First upload the gridpack to T2 or eos, then use crab script feature to submit the jobs. For that process [heavygridpack_script.sh](heavygridpack_script.sh) can be used. It copy the gridpack from T2 or eos to each worknode before the crab job starts. 
