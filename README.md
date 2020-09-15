@@ -1,5 +1,5 @@
 # MC_NLO-delta
-Madgraph Cards and fragments for MC@NLO-delta scheme
+Madgraph fragments for MC@NLO-delta scheme
 
 # Setup
 
