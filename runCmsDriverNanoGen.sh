@@ -2,7 +2,7 @@
 
 #TODO: Make this a proper script that also creates a crab_submit file
 if [[ $# -ne 2 ]]; then
-    echo "Must have two arguments: runCmsDriverNanoGen.sh <config fragment> <outputfile>"
+    echo "Must have two arguments: runCmsDriverNanoGen.sh <config fragment> <outputfile.root>"
     exit 1
 fi
 
@@ -13,4 +13,4 @@ cmsDriver.py Configuration/GenProduction/python/fragment/$fragment \
     --datatier NANOAOD --conditions auto:mc --step LHE,GEN,NANOGEN \
     --python_filename configs/${fragment/cff/cfg} \
     --customise_commands "process.source.firstRun=cms.untracked.uint32(1)" \
-    -n 500 --no_exec
+    -n 100 --no_exec
