@@ -1,5 +1,4 @@
-# MC_NLO-delta
-Madgraph fragments for MC@NLO-delta scheme
+# NanoGEN
 
 # Setup
 
@@ -21,7 +20,7 @@ scram b
 ```
 
 # Making configs and running
-First create a config fragment in python subdirectory. All your config and fragment files must be placed in Configuration/GenProduction/python directory. Move all the config, fragment, crab_files from the folder MC_NLO-delta to Configuration/GenProduction/python and delete MC_NLO-delta folder.
+First create a config fragment in python subdirectory. All your config and fragment files must be placed in Configuration/GenProduction/python directory. Move all the config, fragment, crab_files from the folder NanoGEN to Configuration/GenProduction/python and delete NanoGEN folder.
 
 generate the config for NanoGen with cmsDriver. If you want gridpack --> NanoGen, you can use the script [runCmsDriverNanoGen.sh](runCmsDriverNanoGen.sh). To generate a full config from your fragment and run:
 
