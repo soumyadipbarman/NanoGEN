@@ -2,23 +2,23 @@ from CRABClient.UserUtilities import config
 config = config()
 
 config.section_("General")
-config.General.requestName = 'ttbar_QCD_NLO_5f_mg273-v1'
+config.General.requestName = 'ttbar_QCD_NLO_5f_mg273-v2'
 config.General.workArea = 'crab_projects'
 config.General.transferOutputs = True
 config.General.transferLogs = True
 
 config.section_("JobType")
 config.JobType.pluginName = 'PrivateMC'
-config.JobType.psetName = '../configs/Hadronizer_TuneCP5_13TeV_aMCatNLO_2p_LHE_pythia8_ttbar_QCD_NLO_5f_mg273_cfg.py'
-config.JobType.inputFiles = ['/afs/cern.ch/work/s/sobarman/private/MC@NLO/Gridpack/ttbar/date_07092020/ttbar_QCD_NLO_5f_mg273_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz']
+config.JobType.psetName = '../configs/Hadronizer_TuneCP5_13TeV_aMCatNLO_2p_LHE_pythia8_ttbar_QCD_NLO_5f_mg273_v2_cfg.py'
+config.JobType.inputFiles = ['/afs/cern.ch/work/s/sobarman/private/Gridpack/MC@NLO-delta/date_17052021/ttbar_QCD_NLO_5f_mg273_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz']
 
 config.section_("Data")
-config.Data.outputPrimaryDataset = 'ttbar_QCD_NLO_5f_mg273-v1'
+config.Data.outputPrimaryDataset = 'ttbar_QCD_NLO_5f_mg273-v2'
 config.Data.splitting = 'EventBased'
-config.Data.unitsPerJob = 10000
-NJOBS = 10  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.
+config.Data.unitsPerJob = 1000
+NJOBS = 1000  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
-config.Data.outLFNDirBase = '/store/user/sobarman/'
+config.Data.outLFNDirBase = '/store/user/sobarman/MC_NLO/'
 config.Data.publication = False
 config.Data.outputDatasetTag = 'Generator_Negative_weight'
 

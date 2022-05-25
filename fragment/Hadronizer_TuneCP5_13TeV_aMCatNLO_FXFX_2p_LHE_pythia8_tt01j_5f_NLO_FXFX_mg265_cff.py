@@ -1,7 +1,7 @@
 import FWCore.ParameterSet.Config as cms
 externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    args = cms.vstring('../ttbar_QCD_NLO_4f_mg265_slc6_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz'),
-    nEvents = cms.untracked.uint32(500),
+    args = cms.vstring('../tt01j_5f_ckm_NLO_FXFX_mg265_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz'),
+    nEvents = cms.untracked.uint32(100),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')
@@ -24,7 +24,19 @@ generator = cms.EDFilter("Pythia8HadronizerFilter",
         pythia8aMCatNLOSettingsBlock,
         pythia8PSweightsSettingsBlock,
         processParameters = cms.vstring(
-            'TimeShower:nPartonsInBorn = 2', #number of coloured particles (before resonance decays) in born matrix element
+            'JetMatching:setMad = off',
+            'JetMatching:scheme = 1',
+            'JetMatching:merge = on',
+            'JetMatching:jetAlgorithm = 2',
+            'JetMatching:etaJetMax = 999.',
+            'JetMatching:coneRadius = 1.',
+            'JetMatching:slowJetPower = 1',
+            'JetMatching:qCut = 30.', #this is the actual merging scale
+            'JetMatching:doFxFx = on',
+            'JetMatching:qCutME = 10.',#this must match the ptj cut in the lhe generation step
+            'JetMatching:nQmatch = 5', #4 corresponds to 4-flavour scheme (no matching of b-quarks), 5 for 5-flavour scheme
+            'JetMatching:nJetMax = 1', #number of partons in born matrix element for highest multiplicity
+            'TimeShower:mMaxGamma = 4.0',
         ),
         parameterSets = cms.vstring('pythia8CommonSettings',
                                     'pythia8CP5Settings',
@@ -34,4 +46,5 @@ generator = cms.EDFilter("Pythia8HadronizerFilter",
                                     )
     )
 )
+
 

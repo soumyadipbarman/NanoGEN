@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: Configuration/GenProduction/python/fragment/Hadronizer_TuneCP5_13TeV_aMCatNLO_2p_LHE_pythia8_ttbar_QCD_NLO_5f_mg273_cff.py --fileout file:ttbar_QCD_NLO_5f_mg273.root --mc --eventcontent NANOAODSIM --datatier NANOAOD --conditions auto:mc --step LHE,GEN,NANOGEN --python_filename configs/Hadronizer_TuneCP5_13TeV_aMCatNLO_2p_LHE_pythia8_ttbar_QCD_NLO_5f_mg273_cfg.py --customise_commands process.source.firstRun=cms.untracked.uint32(1) -n 500 --no_exec
+# with command line options: Configuration/GenProduction/python/fragment/Hadronizer_TuneCP5_13TeV_aMCatNLO_UNLOPS_LHE_pythia8_dyeej_2NLO3LO_5f_NLO_UNLOPS_ickkw0_cff.py --fileout file:dyeej_2NLO3LO_5f_NLO_UNLOPS_ickkw0.root --mc --eventcontent NANOAODSIM --datatier NANOAOD --conditions auto:mc --step LHE,GEN,NANOGEN --python_filename configs/Hadronizer_TuneCP5_13TeV_aMCatNLO_UNLOPS_LHE_pythia8_dyeej_2NLO3LO_5f_NLO_UNLOPS_ickkw0_cfg.py --customise_commands process.source.firstRun=cms.untracked.uint32(1) -n 100 --no_exec
 import FWCore.ParameterSet.Config as cms
 
 
@@ -25,7 +25,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(500),
+    input = cms.untracked.int32(100),
     output = cms.optional.untracked.allowed(cms.int32,cms.PSet)
 )
 
@@ -61,7 +61,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/fragment/Hadronizer_TuneCP5_13TeV_aMCatNLO_2p_LHE_pythia8_ttbar_QCD_NLO_5f_mg273_cff.py nevts:500'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/fragment/Hadronizer_TuneCP5_13TeV_aMCatNLO_UNLOPS_LHE_pythia8_dyeej_2NLO3LO_5f_NLO_UNLOPS_ickkw0_cff.py nevts:100'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -78,7 +78,7 @@ process.NANOAODSIMoutput = cms.OutputModule("NanoAODOutputModule",
         dataTier = cms.untracked.string('NANOAOD'),
         filterName = cms.untracked.string('')
     ),
-    fileName = cms.untracked.string('file:ttbar_QCD_NLO_5f_mg273.root'),
+    fileName = cms.untracked.string('file:dyeej_2NLO3LO_5f_NLO_UNLOPS_ickkw0.root'),
     outputCommands = process.NANOAODSIMEventContent.outputCommands
 )
 
@@ -98,7 +98,13 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
             'pythia8PSweightsSettings', 
             'processParameters'
         ),
-        processParameters = cms.vstring('TimeShower:nPartonsInBorn = 2'),
+        processParameters = cms.vstring(
+            'Merging:TMS = 10.', 
+            'Merging:nJetMax = 3', 
+            'Merging:nJetMaxNLO = 2', 
+            'Merging:Process = pp>LEPTONS,NEUTRINOS', 
+            'Merging:doUNLOPSLoop = on'
+        ),
         pythia8CP5Settings = cms.vstring(
             'Tune:pp 14', 
             'Tune:ee 7', 
@@ -167,9 +173,40 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
 
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    #args = cms.vstring('../ttbar_QCD_NLO_5f_mg273_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz'),
-    args = cms.vstring('/afs/cern.ch/work/s/sobarman/private/Gridpack/ttbar/date_07092020/ttbar_QCD_NLO_5f_mg273_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz'),
-    nEvents = cms.untracked.uint32(500),
+    args = cms.vstring('../dyee012j_5f_NLO_UNLOPS_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz'),
+    nEvents = cms.untracked.uint32(100),
+    nPartonMapping = cms.VPSet(
+        cms.PSet(
+            idprup = cms.uint32(0),
+            np = cms.uint32(0),
+            order = cms.string('NLO')
+        ), 
+        cms.PSet(
+            idprup = cms.uint32(1),
+            np = cms.uint32(1),
+            order = cms.string('NLO')
+        ), 
+        cms.PSet(
+            idprup = cms.uint32(2),
+            np = cms.uint32(2),
+            order = cms.string('NLO')
+        ), 
+        cms.PSet(
+            idprup = cms.uint32(3),
+            np = cms.uint32(1),
+            order = cms.string('LO')
+        ), 
+        cms.PSet(
+            idprup = cms.uint32(4),
+            np = cms.uint32(2),
+            order = cms.string('LO')
+        ), 
+        cms.PSet(
+            idprup = cms.uint32(5),
+            np = cms.uint32(3),
+            order = cms.string('LO')
+        )
+    ),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')
