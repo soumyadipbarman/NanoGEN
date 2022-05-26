@@ -1,5 +1,3 @@
-# NanoGEN
-
 # Setup
 
 ```
@@ -12,27 +10,8 @@ cd Configuration
 git clone git@github.com:soumyadipbarman/NanoGEN.git
 scram b
 ```
-For Pythia8.306 atleast CMSSW_12_0_4 \
+For Pythia8.306 CMSSW_12_0_4 \
 For Pythia8.2XX CMSSW_10_6_19
-
-# Old Setup
-
-```
-cmsrel CMSSW_11_0_2
-cd CMSSW_11_0_2/src
-cmsenv
-git cms-init
-git cms-merge-topic kdlong:NanoGen_11_0_2
-scram b -j 5
-
-mkdir -p Configuration/GenProduction/
-git clone git@github.com:cms-sw/genproductions.git Configuration/GenProduction/
-cd Configuration
-git clone git@github.com:kdlong/WMassNanoGen.git 
-cd GenProduction/python
-git clone git@github.com:soumyadipbarman/MC_NLO-delta.git
-scram b
-```
 
 # Making configs and running
 First create a config fragment in python subdirectory or copy fragment from [official genproduction repository](https://github.com/cms-sw/genproductions/tree/master/genfragments). All your fragment files must be placed in Configuration/NanoGEN/python directory. Configs, crab_files must be placed in Configuration/NanoGEN folder.
