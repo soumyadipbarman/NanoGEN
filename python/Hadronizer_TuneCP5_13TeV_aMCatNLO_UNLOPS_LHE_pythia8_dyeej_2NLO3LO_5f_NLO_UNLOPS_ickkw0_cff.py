@@ -4,7 +4,7 @@ lo_ids = [(3, 1), (4, 2), (5, 3)]
 nparton_mapping = [cms.PSet(idprup=cms.uint32(idprup), order=cms.string('NLO'), np=cms.uint32(np)) for idprup, np in nlo_ids]
 nparton_mapping += [cms.PSet(idprup=cms.uint32(idprup), order=cms.string('LO'), np=cms.uint32(np)) for idprup, np in lo_ids]
 externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    args = cms.vstring('/afs/cern.ch/work/s/sobarman/private/Generator/genproductions/bin/MadGraph5_aMCatNLO/dyee012j_5f_NLO_UNLOPS_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz'),
+    args = cms.vstring('/afs/cern.ch/work/s/sobarman/private/Gridpack/UNLOPS/date_30042022/dyee012j_5f_NLO_UNLOPS_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz'),
     nEvents = cms.untracked.uint32(100),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
