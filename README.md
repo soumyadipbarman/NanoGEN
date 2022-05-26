@@ -3,7 +3,8 @@
 # Setup
 
 ```
-cmsrel CMSSW_12_0_4 #Pythia8.306
+
+cmsrel CMSSW_12_0_4 
 cd CMSSW_12_0_4/src
 cmsenv
 mkdir Configuration
@@ -11,6 +12,8 @@ cd Configuration
 git clone git@github.com:soumyadipbarman/NanoGEN.git
 scram b
 ```
+For Pythia8.306 atleast CMSSW_12_0_4 \
+For Pythia8.2XX CMSSW_10_6_19
 
 # Old Setup
 
