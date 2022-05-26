@@ -1,7 +1,6 @@
 # Setup
 
 ```
-
 cmsrel CMSSW_12_0_4 
 cd CMSSW_12_0_4/src
 cmsenv
