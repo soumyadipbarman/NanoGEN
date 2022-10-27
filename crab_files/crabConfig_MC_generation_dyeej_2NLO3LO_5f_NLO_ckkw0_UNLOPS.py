@@ -2,7 +2,7 @@ from CRABClient.UserUtilities import config
 config = config()
 
 config.section_("General")
-config.General.requestName = 'dyeej_2NLO3LO_5f_NLO_UNLOPS_ickkw0_30042022'
+config.General.requestName = 'dyeej_2NLO3LO_5f_NLO_UNLOPS_ickkw0_30042022_v2'
 config.General.workArea = 'crab_projects'
 config.General.transferOutputs = True
 config.General.transferLogs = True
@@ -14,10 +14,10 @@ config.JobType.scriptExe = 'heavygridpack_script.sh'  # For heavy tarball have t
 #config.JobType.inputFiles = ['/afs/cern.ch/work/s/sobarman/private/MC@NLO/Gridpack/ttbar/date_07092020/ttbar_QCD_NLO_5f_MCNLO-delta_111_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz']
 
 config.section_("Data")
-config.Data.outputPrimaryDataset = 'dyeej_2NLO3LO_5f_NLO_UNLOPS_ickkw0_30042022'
+config.Data.outputPrimaryDataset = 'dyeej_2NLO3LO_5f_NLO_UNLOPS_ickkw0_30042022_v2'
 config.Data.splitting = 'EventBased'
 config.Data.unitsPerJob = 5000
-NJOBS = 1000  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.
+NJOBS = 4000  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 config.Data.outLFNDirBase = '/store/user/sobarman/UNLOPS/'
 config.Data.publication = False

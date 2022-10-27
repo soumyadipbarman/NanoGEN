@@ -174,7 +174,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
 
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    args = cms.vstring('/afs/cern.ch/work/s/sobarman/private/Gridpack/UNLOPS/date_30042022/dyee012j_5f_NLO_UNLOPS_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz'),
+    args = cms.vstring('../dyee012j_5f_NLO_UNLOPS_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz'),
     nEvents = cms.untracked.uint32(100),
     nPartonMapping = cms.VPSet(
         cms.PSet(
